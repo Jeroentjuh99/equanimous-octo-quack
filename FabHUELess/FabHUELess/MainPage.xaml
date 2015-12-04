@@ -7,19 +7,56 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ComboBox Grid.Column="0" x:Name="LightBox" HorizontalAlignment="Stretch" Margin="10,0,10,0"/>
             <ToggleSwitch Grid.Column="1" x:Name="LightSwitch" Margin="10,0,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10, 0 , 10, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBlock Text="Hue" />
+                <Slider x:Name="Hue" Maximum="65535"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="Saturation" />
+                <Slider x:Name="Saturation" Maximum="254"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <TextBlock Text="Brightness" />
+                <Slider x:Name="Brightness" Maximum="254"/>
+            </StackPanel>
+            <Button x:Name="Button" Content="Set Color" Grid.Row="4"/>
         </Grid>
     </Grid>
 </Page>
