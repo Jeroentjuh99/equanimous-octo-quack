@@ -8,8 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <ToggleSwitch x:Name="toggleSwitch" Header="Light On" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" x:Name="LightBox" HorizontalAlignment="Stretch" Margin="10,0,10,0"/>
+            <ToggleSwitch Grid.Column="1" x:Name="LightSwitch" Margin="10,0,10,0"/>
+        </Grid>
     </Grid>
 </Page>
