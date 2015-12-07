@@ -26,5 +26,42 @@ namespace FabHUELess
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EventHandlers.SetLampHandler();
+        }
+
+        private void Hue_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(EventHandlers.setHueVal((int)e.NewValue));
+            setColor(brush);
+        }
+
+        private void Saturation_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(EventHandlers.setSatVal((int)e.NewValue));
+            setColor(brush);
+        }
+
+        private void Brightness_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+            SolidColorBrush brush = new SolidColorBrush(EventHandlers.setBriVal((int)e.NewValue));
+            setColor(brush);
+        }
+
+        private void LightSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            EventHandlers.setOnAndOfHandler();
+        }
+        private void setColor(SolidColorBrush brush)
+        {
+            Brightness.Foreground = brush;
+            Saturation.Foreground = brush;
+            Hue.Foreground = brush;
+            LightSwitch.Foreground = brush;
+            
+        }
     }
 }
