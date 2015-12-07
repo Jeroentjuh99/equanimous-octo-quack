@@ -11,7 +11,7 @@ namespace FabHUELess
 {
     class SendAndReceive
     {
-        static string ip = "145.48.230.224";
+        static string ip = "127.0.0.1";
         public static string username = "52f50a9999a85250e53c543986bff72";
         static int port = 8000;
         public static async void setOnAndOf(Boolean on, int id)
