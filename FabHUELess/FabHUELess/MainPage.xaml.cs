@@ -63,5 +63,11 @@ namespace FabHUELess
             LightSwitch.Foreground = brush;
             
         }
+
+        private void Connect1_Click(object sender, RoutedEventArgs e)
+        {
+            EventHandlers.ConnectToBridge();
+            
+        }
     }
 }

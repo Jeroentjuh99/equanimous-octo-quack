@@ -18,7 +18,7 @@
             <Setter Property="FontSize" Value="15"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -57,6 +57,7 @@
                 <Slider x:Name="Brightness" Maximum="254" ValueChanged="Brightness_ValueChanged"/>
             </StackPanel>
             <Button x:Name="Button" Content="Set Color" Grid.Row="4" Click="Button_Click"/>
+            <Button x:Name="Connect1" Content="Connect" HorizontalAlignment="Left" Height="33" Margin="103,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="227" Click="Connect1_Click"/>
         </Grid>
     </Grid>
 </Page>

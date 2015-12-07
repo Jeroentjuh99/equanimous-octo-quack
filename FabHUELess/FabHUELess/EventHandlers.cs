@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Popups;
 
 namespace FabHUELess
 {
@@ -33,12 +34,14 @@ namespace FabHUELess
         public static void setOnAndOfHandler()
         {
             on = !on;
-            SendAndReceive.setOnAndOf(on);
+            SendAndReceive.setOnAndOf(on, 1);
         }
-        public static void SetLampHandler()
+        public static  void SetLampHandler()
         {
-            SendAndReceive.setLamp(HueVal, SatVal, BriVal);
-          
+
+            
+            SendAndReceive.setLamp(HueVal, SatVal, BriVal, 1);
+            
         }
         public static Color HsvToRgb(double hue, double sat, double val)
         {
@@ -85,6 +88,10 @@ namespace FabHUELess
         public static Color GetRgb(double r, double g, double b)
         {
             return Color.FromArgb(255, (byte)(r * 255.0), (byte)(g * 255.0), (byte)(b * 255.0));
+        }
+        public static void ConnectToBridge()
+        {
+            SendAndReceive.ConnectBridge("145.48.230.224");
         }
     }
 }
