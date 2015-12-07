@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" x:Name="LightBox" HorizontalAlignment="Stretch" Margin="10,0,10,0"/>
+            <ComboBox Grid.Column="0" x:Name="LightBox" HorizontalAlignment="Stretch" Margin="10,0,10,0" SelectionChanged="LightBox_SelectionChanged"/>
             <ToggleSwitch Grid.Column="1" x:Name="LightSwitch" Margin="10,0,10,0" Toggled="LightSwitch_Toggled"/>
         </Grid>
 
@@ -58,6 +58,7 @@
             </StackPanel>
             <Button x:Name="Button" Content="Set Color" Grid.Row="4" Click="Button_Click"/>
             <Button x:Name="Connect1" Content="Connect" HorizontalAlignment="Left" Height="33" Margin="103,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="227" Click="Connect1_Click"/>
+            <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="37" Margin="0,15,0,-32" Grid.Row="5" VerticalAlignment="Top" Width="86" Click="button_Click_1"/>
         </Grid>
     </Grid>
 </Page>

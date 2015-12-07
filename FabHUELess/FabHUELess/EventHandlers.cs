@@ -91,7 +91,20 @@ namespace FabHUELess
         }
         public static void ConnectToBridge()
         {
-            SendAndReceive.ConnectBridge("145.48.230.224");
+            SendAndReceive.ConnectBridge(SendAndReceive.ip);
+            Checklamps();
+           
         }
+        public static void Checklamps()
+        {
+            for (int i = 1; i < 10; i++)
+            {
+                SendAndReceive.GetData(i);
+            }
+            
+            
+        }
+
+        
     }
 }

@@ -60,14 +60,40 @@ namespace FabHUELess
             Brightness.Foreground = brush;
             Saturation.Foreground = brush;
             Hue.Foreground = brush;
-            LightSwitch.Foreground = brush;
+
             
         }
 
         private void Connect1_Click(object sender, RoutedEventArgs e)
         {
-            EventHandlers.ConnectToBridge();
             
+           EventHandlers.ConnectToBridge();
+                    fillBox();
+
+            
+        }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SendAndReceive.GetData(1);
+        }
+        public void fillBox()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                LightBox.Items.Add(i);
+            }
+            
+            LightBox.Items.Add("alle lampen");
+        }
+
+        private void LightBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string id = LightBox.SelectedItem.ToString();
+            if (!id.Contains("alle"))
+            {
+                SendAndReceive.GetData(Int32.Parse(id));
+            }
         }
     }
 }

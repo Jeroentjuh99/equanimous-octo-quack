@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace FabHUELess
 {
     class SendAndReceive
     {
-        static string ip = "145.48.230.224";
+        public static string ip = "127.0.0.1";
         public static string username = "52f50a9999a85250e53c543986bff72";
         static int port = 8000;
         public static async void setOnAndOf(Boolean on, int id)
@@ -145,6 +146,44 @@ namespace FabHUELess
 
                 System.Diagnostics.Debug.WriteLine(jsonResponse);
 
+                return jsonResponse;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return string.Empty;
+            }
+        }
+
+        public static int a = 0;
+        public static async void GetData(int id)
+        {
+            var response = await GetTask(id);
+            if (!(response.Contains("not available")))
+                a++;
+            if (string.IsNullOrEmpty(response))
+                await new MessageDialog("Error while setting light properties. ….").ShowAsync();
+        }
+        private static async Task<string> GetTask(int id)
+        {
+            var cts = new CancellationTokenSource();
+            cts.CancelAfter(5000);
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                Uri uriApiState = new Uri($"http://{ip}:{port}/api/{username}/lights/{id}");
+                var response = await client.GetAsync(uriApiState).AsTask(cts.Token);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return string.Empty;
+                }
+
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                System.Diagnostics.Debug.WriteLine(jsonResponse);
+                
                 return jsonResponse;
             }
             catch (Exception ex)
