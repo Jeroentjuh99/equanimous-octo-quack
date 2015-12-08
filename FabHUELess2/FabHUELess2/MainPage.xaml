@@ -7,22 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+        
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        
-        
+        <Ellipse Fill="Black" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}"/>
+        <Slider x:Name="HUE" Maximum="65535" />
+        <Slider x:Name="SAT" Maximum="254" />
+        <Slider x:Name="BRI" Maximum="254" />
     </Grid>
 
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Login">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="Link"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                <AppBarButton Label="Login" Icon="Attach" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-    
+
 </Page>
