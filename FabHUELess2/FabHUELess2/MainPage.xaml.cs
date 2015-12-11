@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,8 +27,13 @@ namespace FabHUELess2
         {
            
             this.InitializeComponent();
-
+            start();
          }
+        public async Task start()
+        {
+            await EH.ConnectToBridge("lol", "8000", "127.0.0.1");
+            EH.getAlldata();
+        }
 
 
 

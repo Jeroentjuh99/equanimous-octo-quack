@@ -12,8 +12,9 @@ namespace FabHUELess2
 {
     class SendAndReceive
     {
-        private string ip;
-        private string port;
+        private string ip = "127.0.0.1";
+        private string port = "8000";
+        private List<Lamp> lamplist = new List<Lamp>();
         private string username;
         private Eventhandlers eventH;
         public SendAndReceive(Eventhandlers eventH)
@@ -84,7 +85,67 @@ namespace FabHUELess2
             }
 
         }
-        public async void ConnectBridge(string usernameN, string port, string ip)
+        public async void GetAllData()
+        {
+            List<char> y = "y".ToList();
+            char x = y[0];
+            int z = 0;
+            var response = await GetAllTask(0);
+            for (int i = 0; i < 12; i++)
+            {
+                if (response.ToString().Contains(i.ToString()))
+                {
+                    z = i;
+                }
+            }
+
+            {
+                for (int c = 1; c < z; c++)
+                {
+                   
+                    try
+                    {
+                        var response2 = await GetAllTask(c);
+                        Lamp lamp = JsonConvert.DeserializeObject<Lamp>(response);
+                        lamp.id = c;
+                        lamplist.Add(lamp);
+
+                        if (string.IsNullOrEmpty(response))
+                            await new MessageDialog("Error while setting light properties. ….").ShowAsync();
+                    }
+                    catch
+                    {
+                        await new MessageDialog("derp").ShowAsync();
+                    }
+                }
+
+                eventH.setList(lamplist);
+
+            }
+        }
+        public async Task<string> GetAllTask(int id)
+        {
+            string url;
+            if (id == 0)
+            {
+              url = "http://" + ip + ":" + port + "/" + "api/" + username + "/" + "lights/";
+            }
+            else
+            {
+              url = "http://" + ip + ":" + port + "/" + "api/" + username + "/" + "lights/" + id+ "/";
+            }
+
+             
+            using (HttpClient hc = new HttpClient())
+            {
+                var response = await hc.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+
+        }
+        public async Task<int> ConnectBridge(string usernameN, string port, string ip)
         {
             var response = await ConnectTask(usernameN, port, ip);
             List<char> list = response.Skip(25).ToList();
@@ -95,7 +156,7 @@ namespace FabHUELess2
             }
             response = response.Remove(31);
             username = response;
-
+            return 10;
             if (string.IsNullOrEmpty(response))
                 await new MessageDialog("Error while setting light properties. ….").ShowAsync();
             

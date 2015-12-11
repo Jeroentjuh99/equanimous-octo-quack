@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Popups;
 
 namespace FabHUELess2
 {
@@ -94,14 +95,23 @@ namespace FabHUELess2
         {
             return Color.FromArgb(255, (byte)(r * 255.0), (byte)(g * 255.0), (byte)(b * 255.0));
         }
-        public void ConnectToBridge(string usernameN, string port, string ip)
+        public async Task<int> ConnectToBridge(string usernameN, string port, string ip)
         { 
-          SAR.ConnectBridge(usernameN,port,ip);
+          await SAR.ConnectBridge(usernameN,port,ip);
+            return 10;
         }
         public void addLamp(int id, int hue, int sat, int bri, bool on, string name)
         {
-            new Lamp(id, hue,sat,bri,on,name)
+            new Lamp(id, hue, sat, bri, on, name);
         }
+        public void getAlldata() {
 
+            SAR.GetAllData();
+        }
+        public async void setList(List<Lamp> a)
+        {
+            lamps = a;
+            await new MessageDialog(a[1].name.ToString()).ShowAsync();
+        }
     }
 }
