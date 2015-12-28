@@ -35,7 +35,15 @@ namespace FabHUELess2
             EH.getAlldata();
         }
 
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Flyout flyout = Resources["Login"] as Flyout;
+            flyout.ShowAt(Elipse);
+        }
 
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

@@ -11,54 +11,72 @@
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
         </Style>
+        
+        <Flyout x:Key="Login">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="1" Name="loginBox" Text="IP:Port" Width="200" />
+                <Button Grid.Row="2" Name="Accept" Content="Accept" Click="Accept_Click"/>
+            </Grid>
+        </Flyout>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
-        <Grid Margin=" 10,0,10,0">
-            <ListBox x:Name="Lights" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" >
-                
-            </ListBox>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <!-- Row 0 -->
-        <Ellipse Grid.Row="0" Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}"/>
-        
-        <!-- Row 1 -->
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!-- Row 0 -->
-            
-            <!-- Row 1 -->
-            <TextBlock Grid.Row="1" Text="Hue"/>
-            <Slider Grid.Row="1" x:Name="HUE" Maximum="65535" />
-            
-            <!-- Row 2 -->
-            <TextBlock Grid.Row="2" Text="Saturation"/>
-            <Slider Grid.Row="2" x:Name="SAT" Maximum="254" />
-            
-            <!-- Row 3 -->
-            <TextBlock Grid.Row="3" Text="Brightness"/>
-            <Slider Grid.Row="3" x:Name="BRI" Maximum="254" />
-            
-            <!-- Row 4 -->
-            <Button Grid.Row="4" x:Name="Button" Content="Apply"/>
-        </Grid>
-    </Grid>
+        <SplitView Name="Lights" DisplayMode="Overlay">
+            <SplitView.Pane>
+                <ListBox Name="LightsBox"/>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Margin=" 10,0,10,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!-- Row 0 -->
+                    <Ellipse Grid.Row="0" Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
+
+                    <!-- Row 1 -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Row 0 -->
+
+                        <!-- Row 1 -->
+                        <TextBlock Grid.Row="1" Text="Hue"/>
+                        <Slider Grid.Row="1" x:Name="HUE" Maximum="65535" />
+
+                        <!-- Row 2 -->
+                        <TextBlock Grid.Row="2" Text="Saturation"/>
+                        <Slider Grid.Row="2" x:Name="SAT" Maximum="254" />
+
+                        <!-- Row 3 -->
+                        <TextBlock Grid.Row="3" Text="Brightness"/>
+                        <Slider Grid.Row="3" x:Name="BRI" Maximum="254" />
+
+                        <!-- Row 4 -->
+                        <Button Grid.Row="4" x:Name="Button" Content="Apply"/>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Login" Icon="Attach" />
+                <AppBarButton Label="Login" Icon="Attach" Click="AppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

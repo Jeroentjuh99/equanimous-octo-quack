@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FabHUELess2
 {
-    class Lamp
+    public class Lamp
     {
         public bool on { get; set; } = false;
         public double bri { get; set; } = 0;

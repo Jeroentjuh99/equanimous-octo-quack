@@ -9,7 +9,7 @@ using Windows.UI.Popups;
 namespace FabHUELess2
 {
    
-    class Eventhandlers
+    public class Eventhandlers
     {
         private SendAndReceive SAR;
         List<Lamp> lamps = new List<Lamp>();
@@ -112,6 +112,11 @@ namespace FabHUELess2
         {
             lamps = a;
             await new MessageDialog(a[1].name.ToString()).ShowAsync();
+        }
+
+        public SendAndReceive GetSAR()
+        {
+            return SAR;
         }
     }
 }

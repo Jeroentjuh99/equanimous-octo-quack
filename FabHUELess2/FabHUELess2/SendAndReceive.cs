@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace FabHUELess2
 {
-    class SendAndReceive
+    public class SendAndReceive
     {
         private string ip = "127.0.0.1";
         private string port = "8000";
@@ -180,7 +180,12 @@ namespace FabHUELess2
             }
             
         }
-        
+
+        public void setIP(string ip, string poort)
+        {
+            this.ip = ip;
+            this.port = poort;
+        }
         
     }
     
