@@ -55,15 +55,15 @@
 
                         <!-- Row 1 -->
                         <TextBlock Grid.Row="1" Text="Hue"/>
-                        <Slider Grid.Row="1" x:Name="HUE" Maximum="65535" />
+                        <Slider Grid.Row="1" x:Name="HUE" Maximum="65535" ValueChanged="ValueChanged"/>
 
                         <!-- Row 2 -->
                         <TextBlock Grid.Row="2" Text="Saturation"/>
-                        <Slider Grid.Row="2" x:Name="SAT" Maximum="254" />
+                        <Slider Grid.Row="2" x:Name="SAT" Maximum="254" ValueChanged="ValueChanged"/>
 
                         <!-- Row 3 -->
                         <TextBlock Grid.Row="3" Text="Brightness"/>
-                        <Slider Grid.Row="3" x:Name="BRI" Maximum="254" />
+                        <Slider Grid.Row="3" x:Name="BRI" Maximum="254" ValueChanged="ValueChanged"/>
 
                         <!-- Row 4 -->
                         <Button Grid.Row="4" x:Name="Button" Content="Apply"/>

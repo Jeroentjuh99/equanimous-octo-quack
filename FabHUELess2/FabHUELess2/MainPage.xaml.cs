@@ -45,5 +45,11 @@ namespace FabHUELess2
         {
 
         }
+
+        private void ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Brush b = new SolidColorBrush(EH.HsvToRgb(HUE.Value, SAT.Value, BRI.Value));
+            Elipse.Fill = b;
+        }
     }
 }
