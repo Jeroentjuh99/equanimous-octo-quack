@@ -37,8 +37,14 @@ namespace FabHUELess2
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            if (sender.Equals(LoginButton)) { 
             Flyout flyout = Resources["Login"] as Flyout;
             flyout.ShowAt(Elipse);
+            }
+            else
+            {
+                Lights.IsPaneOpen = !Lights.IsPaneOpen;
+            }
         }
 
         private void Accept_Click(object sender, RoutedEventArgs e)

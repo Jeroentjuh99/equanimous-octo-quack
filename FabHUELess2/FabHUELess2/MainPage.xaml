@@ -75,9 +75,10 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Login" Icon="Attach" Click="AppBarButton_Click" />
-            </CommandBar.SecondaryCommands>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Open List" Icon="AllApps" Click="AppBarButton_Click" x:Name="Hamburger" />
+                <AppBarButton Label="Login" Icon="Attach" Click="AppBarButton_Click" x:Name="LoginButton" />
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
