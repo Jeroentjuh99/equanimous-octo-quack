@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,11 +24,11 @@ namespace FabHUELess2
     {
 
         private Eventhandlers EH = new Eventhandlers();
+        public ObservableCollection<Button> ButtonsList { get; set; } = new ObservableCollection<Button>();
         public MainPage()
         {
            
             this.InitializeComponent();
-            
             checkUser();
         }
         public async Task checkUser()

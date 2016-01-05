@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 
 namespace FabHUELess2
 {
@@ -21,8 +22,7 @@ namespace FabHUELess2
         {
             SAR = new SendAndReceive(this);
         }
-       
-        
+
         //public Color setHueVal(int hue)
         //{
         //    HueVal = hue;
