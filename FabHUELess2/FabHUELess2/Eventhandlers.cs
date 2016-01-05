@@ -14,7 +14,7 @@ namespace FabHUELess2
     public class Eventhandlers
     {
         public SendAndReceive SAR;
-        public ObservableCollection<Lamp> lamps { get; } = new ObservableCollection<Lamp>();
+        public ObservableCollection<Lamp> lamps { get; set; } = new ObservableCollection<Lamp>();
         private int HueVal { get; set; }
         private int SatVal { get; set; }
         private int BriVal { get; set; }
@@ -116,7 +116,7 @@ namespace FabHUELess2
             await SAR.GetAllData();
             return 10;
         }
-        public async void setList(List<Lamp> a)
+        public async void setList(ObservableCollection<Lamp> a)
         {
             lamps = a;
             
