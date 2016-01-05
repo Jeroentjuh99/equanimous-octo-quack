@@ -166,8 +166,10 @@ namespace FabHUELess2
             if (usernameFile.ToString() != "")
             {
                 await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
-
-                this.username = username1;
+                if (username != null)
+                {
+                    this.username = username1;
+                }
             }
 
             return 10;

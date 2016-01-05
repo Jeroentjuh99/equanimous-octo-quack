@@ -42,6 +42,15 @@ namespace FabHUELess2
             {
                 
                 EH.SAR.setusername(text);
+                var responseCheck = await EH.SAR.GetAllTask(0);
+                if (responseCheck.ToString().Contains("error"))
+                {
+                    EH.SAR.setusername(null);
+                }
+            }
+            else
+            {
+
             }
         }
 
@@ -67,7 +76,7 @@ namespace FabHUELess2
             try {
                 string[] strings = loginBox.Text.Trim().Split(':');
                 await EH.ConnectToBridge("lol", strings[1], strings[0]);
-                EH.getAlldata();
+                await EH.getAlldata();
             }
             catch (Exception)
             {
