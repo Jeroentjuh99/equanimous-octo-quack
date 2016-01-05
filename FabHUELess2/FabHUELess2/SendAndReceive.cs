@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Newtonsoft;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace FabHUELess2
 {
@@ -14,7 +15,7 @@ namespace FabHUELess2
     {
         private string ip = "127.0.0.1";
         private string port = "8000";
-        private List<Lamp> lamplist = new List<Lamp>();
+        private ObservableCollection<Lamp> lamplist = new ObservableCollection<Lamp>();
         private string username;
         private Eventhandlers eventH;
         public SendAndReceive(Eventhandlers eventH)

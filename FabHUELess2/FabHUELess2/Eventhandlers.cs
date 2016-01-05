@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace FabHUELess2
 {
-   
+
     public class Eventhandlers
     {
         public SendAndReceive SAR;
-        List<Lamp> lamps = new List<Lamp>();
+        public ObservableCollection<Lamp> lamps { get; } = new ObservableCollection<Lamp>();
         private int HueVal { get; set; }
         private int SatVal { get; set; }
         private int BriVal { get; set; }
@@ -118,9 +119,9 @@ namespace FabHUELess2
         public async void setList(List<Lamp> a)
         {
             lamps = a;
+            
             await new MessageDialog(a[1].name.ToString()).ShowAsync();
         }
-
         public SendAndReceive GetSAR()
         {
             return SAR;

@@ -25,6 +25,7 @@ namespace FabHUELess2
 
         private Eventhandlers EH = new Eventhandlers();
         public ObservableCollection<Button> ButtonsList { get; set; } = new ObservableCollection<Button>();
+        public static ObservableCollection<Lamp> collectionlamp { get; set; } = new ObservableCollection<Lamp>();
         public MainPage()
         {
            
@@ -77,6 +78,7 @@ namespace FabHUELess2
                 string[] strings = loginBox.Text.Trim().Split(':');
                 await EH.ConnectToBridge("lol", strings[1], strings[0]);
                 await EH.getAlldata();
+                collectionlamp = EH.lamps;
             }
             catch (Exception)
             {
