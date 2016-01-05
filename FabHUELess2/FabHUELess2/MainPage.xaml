@@ -5,6 +5,7 @@
     xmlns:local="using:FabHUELess2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:FabHUELess2"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -12,8 +13,8 @@
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
         </Style>
 
-        <DataTemplate x:Key="Template">
-            <Button Content="{Binding Path=name}" Click="Button_Click"/>
+        <DataTemplate x:Key="Template" x:DataType="data:Lamp">
+            <TextBlock x:Name="Name" HorizontalAlignment="Center" Text="{x:Bind name}"/>
         </DataTemplate>
         
         <Flyout x:Key="Login">
@@ -33,7 +34,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
         <SplitView Name="Lights" DisplayMode="Overlay">
             <SplitView.Pane>
-                <ListBox Name="LightsBox" DataContext="collectionlamp" ItemsSource="{Binding}" ItemTemplate="{StaticResource Template}"/>
+                <ListView Name="LightsBox" ItemTemplate="{StaticResource Template}" ItemsSource="{x:Bind collectionlamp}" IsItemClickEnabled="True" ItemClick="LightsBox_ItemClick"/>
             </SplitView.Pane>
             <SplitView.Content>
                 <Grid Margin=" 10,0,10,0">

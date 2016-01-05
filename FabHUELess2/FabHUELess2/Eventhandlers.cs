@@ -120,7 +120,7 @@ namespace FabHUELess2
         {
             lamps = a;
             
-            await new MessageDialog(a[1].name.ToString()).ShowAsync();
+            //await new MessageDialog(a[1].name.ToString()).ShowAsync();
         }
         public SendAndReceive GetSAR()
         {

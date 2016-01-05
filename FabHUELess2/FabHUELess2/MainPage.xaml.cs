@@ -24,8 +24,7 @@ namespace FabHUELess2
     {
 
         private Eventhandlers EH = new Eventhandlers();
-        public ObservableCollection<Button> ButtonsList { get; set; } = new ObservableCollection<Button>();
-        public static ObservableCollection<Lamp> collectionlamp { get; set; } = new ObservableCollection<Lamp>();
+        public ObservableCollection<Lamp> collectionlamp { get; set; } = new ObservableCollection<Lamp>();
         public MainPage()
         {
            
@@ -108,7 +107,7 @@ namespace FabHUELess2
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LightsBox_ItemClick(object sender, ItemClickEventArgs e)
         {
 
         }
