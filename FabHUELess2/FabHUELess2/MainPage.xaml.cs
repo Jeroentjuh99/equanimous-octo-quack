@@ -64,10 +64,10 @@ namespace FabHUELess2
             Windows.Storage.StorageFolder storageFolder =
           Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile usernameFile =
-                await storageFolder.CreateFileAsync("username.txt");
+                await storageFolder.CreateFileAsync("username.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
             // hier moet je uit dat textveld waar die acceptbutton in staat even die waarden eruit halen en die variabele in de methode hieronder zetten i.p.v 8000 en 127.0.0.1
             await EH.ConnectToBridge("lol", "8000", "127.0.0.1");
-            EH.getAlldata();
+            await EH.getAlldata();
         }
 
         private void ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

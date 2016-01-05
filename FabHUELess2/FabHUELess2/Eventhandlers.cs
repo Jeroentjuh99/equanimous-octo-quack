@@ -103,16 +103,17 @@ namespace FabHUELess2
         }
         public async Task<int> ConnectToBridge(string usernameN, string port, string ip)
         { 
-          await SAR.ConnectBridge(usernameN,port,ip);
+          var response = await SAR.ConnectBridge(usernameN,port,ip);
             return 10;
         }
         public void addLamp(int id, int hue, int sat, int bri, bool on, string name)
         {
             new Lamp(id, hue, sat, bri, on, name);
         }
-        public void getAlldata() {
+        public async Task<int> getAlldata() {
 
-            SAR.GetAllData();
+            await SAR.GetAllData();
+            return 10;
         }
         public async void setList(List<Lamp> a)
         {

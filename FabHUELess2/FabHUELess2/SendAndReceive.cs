@@ -88,7 +88,7 @@ namespace FabHUELess2
             }
 
         }
-        public async void GetAllData()
+        public async Task<int> GetAllData()
         {
             List<char> y = "y".ToList();
             char x = y[0];
@@ -98,7 +98,7 @@ namespace FabHUELess2
             {
                 if (response.ToString().Contains(i.ToString()))
                 {
-                    z = i;
+                    z++;
                 }
             }
 
@@ -109,7 +109,7 @@ namespace FabHUELess2
                     try
                     {
                         var response2 = await GetAllTask(c);
-                        Lamp lamp = JsonConvert.DeserializeObject<Lamp>(response);
+                        Lamp lamp = JsonConvert.DeserializeObject<Lamp>(response2);
                         lamp.id = c;
                         lamplist.Add(lamp);
 
@@ -118,12 +118,12 @@ namespace FabHUELess2
                     }
                     catch
                     {
-                        await new MessageDialog("derp").ShowAsync();
+                        
                     }
                 }
 
                 eventH.setList(lamplist);
-
+                return 10;
             }
         }
         public async Task<string> GetAllTask(int id)
@@ -163,11 +163,11 @@ namespace FabHUELess2
     Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile usernameFile =
                 await storageFolder.GetFileAsync("username.txt");
-            if (usernameFile.ToString().Count() == 0)
+            if (usernameFile.ToString() != "")
             {
-                //await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
+                await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
 
-                username = username1;
+                this.username = username1;
             }
 
             return 10;
