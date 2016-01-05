@@ -77,7 +77,10 @@ namespace FabHUELess2
                 string[] strings = loginBox.Text.Trim().Split(':');
                 await EH.ConnectToBridge("lol", strings[1], strings[0]);
                 await EH.getAlldata();
-                collectionlamp = EH.lamps;
+                //collectionlamp = EH.lamps;
+                foreach(Lamp l in EH.lamps){
+                    collectionlamp.Add(l);
+                }
             }
             catch (Exception)
             {
