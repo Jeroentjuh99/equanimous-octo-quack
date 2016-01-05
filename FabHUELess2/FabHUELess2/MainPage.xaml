@@ -12,11 +12,9 @@
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
         </Style>
 
-        <Style TargetType="ListBoxItem">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-        </Style>
+        <DataTemplate x:Key="Template">
+            <Button Content="{Binding Path=name}" Click="Button_Click"/>
+        </DataTemplate>
         
         <Flyout x:Key="Login">
             <Grid>
@@ -35,7 +33,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
         <SplitView Name="Lights" DisplayMode="Overlay">
             <SplitView.Pane>
-                <ListBox Name="LightsBox" ItemsSource="{Binding ButtonsList}"/>
+                <ListBox Name="LightsBox" DataContext="collectionlamp" ItemsSource="{Binding}" ItemTemplate="{StaticResource Template}"/>
             </SplitView.Pane>
             <SplitView.Content>
                 <Grid Margin=" 10,0,10,0">
