@@ -59,15 +59,23 @@ namespace FabHUELess2
 
         private async void Accept_Click(object sender, RoutedEventArgs e)
         {
-           
 
-            Windows.Storage.StorageFolder storageFolder =
-          Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile usernameFile =
-                await storageFolder.CreateFileAsync("username.txt");
+            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile usernameFile = await storageFolder.CreateFileAsync("username.txt");
             // hier moet je uit dat textveld waar die acceptbutton in staat even die waarden eruit halen en die variabele in de methode hieronder zetten i.p.v 8000 en 127.0.0.1
-            await EH.ConnectToBridge("lol", "8000", "127.0.0.1");
-            EH.getAlldata();
+            try {
+                string[] strings = loginBox.Text.Trim().Split(':');
+                await EH.ConnectToBridge("lol", strings[1], strings[0]);
+                EH.getAlldata();
+            }
+            catch (Exception)
+            {
+                Flyout flyout = new Flyout();
+                TextBlock b = new TextBlock();
+                b.Text = "Please make sure you entered the adress correctly";
+                flyout.Content = b;
+                flyout.ShowAt(Elipse);
+            }
         }
 
         private void ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
