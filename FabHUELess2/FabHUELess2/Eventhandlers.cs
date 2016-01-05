@@ -116,7 +116,7 @@ namespace FabHUELess2
             await SAR.GetAllData();
             return 10;
         }
-        public async void setList(ObservableCollection<Lamp> a)
+        public void setList(ObservableCollection<Lamp> a)
         {
             lamps = a;
             
