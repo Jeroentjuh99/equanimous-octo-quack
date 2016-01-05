@@ -39,8 +39,10 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <!-- Row 0 -->
-                    <Ellipse Grid.Row="0" Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
-
+                    <Button x:Name="ToggleState" Grid.Row="0" Background="Black" Click="ToggleState_Click" HorizontalAlignment="Center" >
+                        <Ellipse Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
+                    </Button>
+                    
                     <!-- Row 1 -->
                     <Grid Grid.Row="1" Height="320" VerticalAlignment="Top">
                         <Grid.RowDefinitions>

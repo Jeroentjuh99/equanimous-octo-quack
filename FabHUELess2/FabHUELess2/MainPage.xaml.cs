@@ -80,6 +80,10 @@ namespace FabHUELess2
         {
             EH.SetLampHandler();
         }
-        
+
+        private void ToggleState_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
