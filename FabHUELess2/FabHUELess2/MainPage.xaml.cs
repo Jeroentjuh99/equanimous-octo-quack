@@ -27,12 +27,21 @@ namespace FabHUELess2
         {
            
             this.InitializeComponent();
-            start();
-         }
-        public async Task start()
+            
+            checkUser();
+        }
+        public async Task checkUser()
         {
-            await EH.ConnectToBridge("lol", "8000", "127.0.0.1");
-            EH.getAlldata();
+            Windows.Storage.StorageFolder storageFolder =
+             Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile usernameFile =
+                await storageFolder.GetFileAsync("username.txt");
+            string text = await Windows.Storage.FileIO.ReadTextAsync(usernameFile);
+            if (text != null)
+            {
+                
+                EH.SAR.setusername(text);
+            }
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -47,15 +56,30 @@ namespace FabHUELess2
             }
         }
 
-        private void Accept_Click(object sender, RoutedEventArgs e)
+        private async void Accept_Click(object sender, RoutedEventArgs e)
         {
+           
 
+            Windows.Storage.StorageFolder storageFolder =
+          Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile usernameFile =
+                await storageFolder.CreateFileAsync("username.txt");
+            // hier moet je uit dat textveld waar die acceptbutton in staat even die waarden eruit halen en die variabele in de methode hieronder zetten i.p.v 8000 en 127.0.0.1
+            await EH.ConnectToBridge("lol", "8000", "127.0.0.1");
+            EH.getAlldata();
         }
 
         private void ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
+            EH.setVals((int)HUE.Value, (int)SAT.Value, (int)BRI.Value);
             Brush b = new SolidColorBrush(EH.HsvToRgb(HUE.Value, SAT.Value, BRI.Value));
             Elipse.Fill = b;
         }
+
+        private void Apply_Click(object sender, RoutedEventArgs e)
+        {
+            EH.SetLampHandler();
+        }
+        
     }
 }

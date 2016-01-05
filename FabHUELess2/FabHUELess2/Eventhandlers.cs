@@ -11,7 +11,7 @@ namespace FabHUELess2
    
     public class Eventhandlers
     {
-        private SendAndReceive SAR;
+        public SendAndReceive SAR;
         List<Lamp> lamps = new List<Lamp>();
         private int HueVal { get; set; }
         private int SatVal { get; set; }
@@ -23,22 +23,28 @@ namespace FabHUELess2
         }
        
         
-        public Color setHueVal(int hue)
-        {
-            HueVal = hue;
-            return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
-        }
+        //public Color setHueVal(int hue)
+        //{
+        //    HueVal = hue;
+        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
+        //}
 
-        public Color setSatVal(int sat)
-        {
-            SatVal = sat;
-            return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
-        }
+        //public Color setSatVal(int sat)
+        //{
+        //    SatVal = sat;
+        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
+        //}
 
-        public Color setBriVal(int bri)
+        //public Color setBriVal(int bri)
+        //{
+        //    BriVal = bri;
+        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
+        //}
+        public void setVals(int hue, int sat, int bri)
         {
             BriVal = bri;
-            return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
+            SatVal = sat;
+            HueVal = hue;
         }
         public void setOnAndOfHandler()
         {

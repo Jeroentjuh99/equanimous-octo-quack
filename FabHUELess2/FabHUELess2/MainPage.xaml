@@ -42,7 +42,7 @@
                     <Ellipse Grid.Row="0" Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
 
                     <!-- Row 1 -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Height="320" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -66,7 +66,7 @@
                         <Slider Grid.Row="3" x:Name="BRI" Maximum="254" ValueChanged="ValueChanged"/>
 
                         <!-- Row 4 -->
-                        <Button Grid.Row="4" x:Name="Button" Content="Apply"/>
+                        <Button Grid.Row="4" x:Name="Button" Content="Apply" Click="Apply_Click"/>
                     </Grid>
                 </Grid>
             </SplitView.Content>

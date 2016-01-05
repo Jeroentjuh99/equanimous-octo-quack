@@ -21,7 +21,10 @@ namespace FabHUELess2
         {
             this.eventH = eventH;
         }
-
+        public void setusername(string username)
+        {
+            this.username = username;
+        }
         public async void setOnAndOf(Boolean on, int id)
         {
             var response = await LightOnTask(on, id);
@@ -155,10 +158,21 @@ namespace FabHUELess2
                 response += c;
             }
             response = response.Remove(31);
-            username = response;
+            String username1 = response;
+            Windows.Storage.StorageFolder storageFolder =
+    Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile usernameFile =
+                await storageFolder.GetFileAsync("username.txt");
+            if (usernameFile.ToString().Count() == 0)
+            {
+                //await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
+
+                username = username1;
+            }
+
             return 10;
-            if (string.IsNullOrEmpty(response))
-                await new MessageDialog("Error while setting light properties. ….").ShowAsync();
+           
+
             
 
 
