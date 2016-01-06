@@ -68,8 +68,6 @@ namespace FabHUELess2
 
         private async void Accept_Click(object sender, RoutedEventArgs e)
         {
-
-
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 		await storageFolder.CreateFileAsync("username.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
             // hier moet je uit dat textveld waar die acceptbutton in staat even die waarden eruit halen en die variabele in de methode hieronder zetten i.p.v 8000 en 127.0.0.1
@@ -81,6 +79,8 @@ namespace FabHUELess2
                 foreach(Lamp l in EH.lamps){
                     collectionlamp.Add(l);
                 }
+                Flyout f = Resources["Login"] as Flyout;
+                f.Hide();
             }
             catch (Exception)
             {
