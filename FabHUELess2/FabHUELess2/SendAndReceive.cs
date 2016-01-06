@@ -14,8 +14,15 @@ namespace FabHUELess2
 {
     public class SendAndReceive
     {
-        private string ip = "127.0.0.1";
-        private string port = "8000";
+        public Boolean on;
+        public string ip
+        {
+            get; set;
+        } = "145.48.205.190";
+        public string port
+        {
+            get; set;
+        } = "80";
         private ObservableCollection<Lamp> lamplist = new ObservableCollection<Lamp>();
         private string username;
         private Eventhandlers eventH;
@@ -35,11 +42,22 @@ namespace FabHUELess2
         }
         public async Task<string> LightOnTask(Boolean on, int Id)
         {
+            this.on = on;
                 string url = "http://" + ip + ":" + port + "/" + "api/" + username + "/" + "lights" + "/" + Id + "/" + "state";
-                HttpContent content = new StringContent
-                          ($"{{ \"on\": {on} }}",
-                            Encoding.UTF8,
-                            "application/json");
+            HttpContent content;
+            if (on == true)
+            {
+                content = new StringContent
+                              ("{\"on\": true }",
+                                Encoding.UTF8,
+                                "application/json");
+            }
+            else {
+                content = new StringContent
+                              ("{\"on\": false}",
+                                Encoding.UTF8,
+                                "application/json");
+            }
             using (HttpClient hc = new HttpClient())
                 {
                     var response = await hc.PutAsync(url, content);
@@ -79,7 +97,7 @@ namespace FabHUELess2
         }
         public async Task<string> GetTask(int Id)
         {
-            string url = "http://" + ip + ":" + port + "/" + "api/" + username + "/" + "lights" + "/" + Id + "/" + "state";
+            string url = "http://" + ip + ":" + port + "/" + "api/"+username+"/" + "lights" + "/" + Id + "/" + "state";
            
             using (HttpClient hc = new HttpClient())
             {
@@ -134,7 +152,7 @@ namespace FabHUELess2
             string url;
             if (id == 0)
             {
-              url = "http://" + ip + ":" + port + "/" + "api/" + username + "/" + "lights/";
+                url = "http://" + ip + ":" + port + "/" + "api/"+username+"/lights";
             }
             else
             {
@@ -186,11 +204,12 @@ namespace FabHUELess2
         }
         public async Task<string> ConnectTask(string usernameN, string port, string ip)
         {
+            usernameN = "my_hue_app#iphone peter";
             this.port = port;
             this.ip = ip;
             string url = "http://" + ip + ":" + port + "/" + "api/";
             HttpContent content = new StringContent
-                      ($"{{ \"username\": {usernameN} }}",
+                      ("{\"devicetype\":\"MijnApp#{" + usernameN + "}\"}",
                         Encoding.UTF8,
                         "application/json");
             using (HttpClient hc = new HttpClient())

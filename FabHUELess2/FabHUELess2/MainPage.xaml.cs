@@ -42,20 +42,20 @@ namespace FabHUELess2
                 await storageFolder.GetFileAsync("username.txt");
             string text = await Windows.Storage.FileIO.ReadTextAsync(usernameFile);
             
-            if (text != null)
+            if (text != null && !text.Equals(""))
             {
                 
                 EH.SAR.setusername(text);
-                var responseCheck = await EH.SAR.GetAllTask(0);
-                if (responseCheck.ToString().Contains("error"))
-                {
-                    EH.SAR.setusername(null);
-                }
-              }
-            else
-            {
+                //var responseCheck = await EH.SAR.GetAllTask(0);
+            //    if (responseCheck.ToString().Contains("error"))
+            //    {
+            //        EH.SAR.setusername(null);
+            //    }
+            //  }
+            //else
+            //{
 
-            }
+           }
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -79,6 +79,8 @@ namespace FabHUELess2
             try {
                 string[] strings = loginBox.Text.Trim().Split(':');
                 await EH.ConnectToBridge("lol", strings[1], strings[0]);
+                EH.SAR.ip = strings[0];
+                EH.SAR.port = strings[1];
                 await EH.getAlldata();
                 //collectionlamp = EH.lamps;
                 foreach(Lamp l in EH.lamps){

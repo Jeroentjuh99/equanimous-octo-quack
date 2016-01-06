@@ -22,24 +22,6 @@ namespace FabHUELess2
         {
             SAR = new SendAndReceive(this);
         }
-
-        //public Color setHueVal(int hue)
-        //{
-        //    HueVal = hue;
-        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
-        //}
-
-        //public Color setSatVal(int sat)
-        //{
-        //    SatVal = sat;
-        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
-        //}
-
-        //public Color setBriVal(int bri)
-        //{
-        //    BriVal = bri;
-        //    return HsvToRgb((double)HueVal, (double)SatVal, (double)BriVal);
-        //}
         public void setVals(int hue, int sat, int bri)
         {
             BriVal = bri;
@@ -118,8 +100,6 @@ namespace FabHUELess2
         public void setList(ObservableCollection<Lamp> a)
         {
             lamps = a;
-            
-            //await new MessageDialog(a[1].name.ToString()).ShowAsync();
         }
         public SendAndReceive GetSAR()
         {
