@@ -112,7 +112,10 @@ namespace FabHUELess2
 
         private void LightsBox_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Lamp s = (Lamp)e.ClickedItem;
+            HUE.Value = s.state.hue;
+            BRI.Value = s.state.bri;
+            SAT.Value = s.state.sat;
         }
     }
 }

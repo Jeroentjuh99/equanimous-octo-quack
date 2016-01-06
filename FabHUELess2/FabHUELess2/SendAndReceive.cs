@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using Newtonsoft;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Controls;
 
 namespace FabHUELess2
 {
@@ -110,7 +111,10 @@ namespace FabHUELess2
                     try
                     {
                         var response2 = await GetAllTask(c);
+                        
                         Lamp lamp = JsonConvert.DeserializeObject<Lamp>(response2);
+                        await new MessageDialog(lamp.state.sat.ToString()).ShowAsync();
+
                         lamp.id = c;
                         lamplist.Add(lamp);
 
