@@ -13,5 +13,12 @@
             this.sat = sat;
             this.on = on;
         }
+        public void setstates(int bri, int hue, int sat, bool on)
+        {
+            this.bri = bri;
+            this.hue = hue;
+            this.sat = sat;
+            this.on = on;
+        }
     }
 }

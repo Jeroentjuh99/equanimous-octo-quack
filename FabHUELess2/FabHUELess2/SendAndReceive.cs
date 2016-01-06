@@ -113,8 +113,6 @@ namespace FabHUELess2
                         var response2 = await GetAllTask(c);
                         
                         Lamp lamp = JsonConvert.DeserializeObject<Lamp>(response2);
-                        await new MessageDialog(lamp.state.sat.ToString()).ShowAsync();
-
                         lamp.id = c;
                         lamplist.Add(lamp);
 
@@ -155,25 +153,27 @@ namespace FabHUELess2
         }
         public async Task<int> ConnectBridge(string usernameN, string port, string ip)
         {
-            var response = await ConnectTask(usernameN, port, ip);
-            List<char> list = response.Skip(25).ToList();
-            response = null;
-            foreach (char c in list)
-            {
-                response += c;
-            }
-            response = response.Remove(31);
-            String username1 = response;
+            
             Windows.Storage.StorageFolder storageFolder =
     Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile usernameFile =
                 await storageFolder.GetFileAsync("username.txt");
             if (usernameFile.ToString() != "")
             {
-                await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
-                if (username != null)
+                
+                if (username == null)
                 {
+                    var response = await ConnectTask(usernameN, port, ip);
+                    List<char> list = response.Skip(25).ToList();
+                    response = null;
+                    foreach (char c in list)
+                    {
+                        response += c;
+                    }
+                    response = response.Remove(31);
+                    String username1 = response;
                     this.username = username1;
+                    await Windows.Storage.FileIO.WriteTextAsync(usernameFile, username1);
                 }
             }
 

@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,12 +25,14 @@ namespace FabHUELess2
     {
 
         private Eventhandlers EH = new Eventhandlers();
+        Boolean on = true;
+        double Id;
         public ObservableCollection<Lamp> collectionlamp { get; set; } = new ObservableCollection<Lamp>();
         public MainPage()
         {
            
             this.InitializeComponent();
-            checkUser();
+            
         }
         public async Task checkUser()
         {
@@ -38,6 +41,7 @@ namespace FabHUELess2
             Windows.Storage.StorageFile usernameFile =
                 await storageFolder.GetFileAsync("username.txt");
             string text = await Windows.Storage.FileIO.ReadTextAsync(usernameFile);
+            
             if (text != null)
             {
                 
@@ -47,7 +51,7 @@ namespace FabHUELess2
                 {
                     EH.SAR.setusername(null);
                 }
-            }
+              }
             else
             {
 
@@ -70,6 +74,7 @@ namespace FabHUELess2
         {
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 		await storageFolder.CreateFileAsync("username.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+            await checkUser();
             // hier moet je uit dat textveld waar die acceptbutton in staat even die waarden eruit halen en die variabele in de methode hieronder zetten i.p.v 8000 en 127.0.0.1
             try {
                 string[] strings = loginBox.Text.Trim().Split(':');
@@ -98,25 +103,70 @@ namespace FabHUELess2
         {
             EH.setVals((int)HUE.Value, (int)SAT.Value, (int)BRI.Value);
             Brush b = new SolidColorBrush(EH.HsvToRgb(HUE.Value, SAT.Value, BRI.Value));
-            Elipse.Fill = b;
+            if (on == true)
+            {
+                Elipse.Fill = b;
+            }
+            
+
         }
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            EH.SetLampHandler();
+            EH.SetLampHandler(Id);
+            foreach (Lamp l in collectionlamp)
+            {
+                if (l.id == Id)
+                {
+                    l.state.hue = HUE.Value;
+                    l.state.bri = BRI.Value;
+                    l.state.sat = SAT.Value;
+                }
+            }
         }
 
         private void ToggleState_Click(object sender, RoutedEventArgs e)
         {
-
+            EH.setOnAndOfHandler(Id, on);
+            on = !on;
+            if (on == true)
+            {
+                Brush b = new SolidColorBrush(EH.HsvToRgb(HUE.Value, SAT.Value, BRI.Value));
+                Elipse.Fill = b;
+            }
+            else
+            {
+                Brush b = new SolidColorBrush(EH.GetRgb(190,190,190));
+                Elipse.Fill = b;
+            }
         }
 
         private void LightsBox_ItemClick(object sender, ItemClickEventArgs e)
         {
             Lamp s = (Lamp)e.ClickedItem;
-            HUE.Value = s.state.hue;
-            BRI.Value = s.state.bri;
-            SAT.Value = s.state.sat;
+            Id = s.id;
+            foreach (Lamp l in collectionlamp)
+            {
+                if (l.id == Id)
+                {
+                    HUE.Value = l.state.hue;
+                    BRI.Value = l.state.bri;
+                    SAT.Value = l.state.sat;
+                    on = l.state.on;
+                    if (on == true)
+                    {
+                        Brush b = new SolidColorBrush(EH.HsvToRgb(HUE.Value, SAT.Value, BRI.Value));
+                        Elipse.Fill = b;
+                    }
+                    else
+                    {
+                        Brush b = new SolidColorBrush(EH.GetRgb(190, 190, 190));
+                        Elipse.Fill = b;
+                    }
+                }
+            }
+            
+
         }
     }
 }

@@ -18,7 +18,6 @@ namespace FabHUELess2
         private int HueVal { get; set; }
         private int SatVal { get; set; }
         private int BriVal { get; set; }
-        private Boolean on { get; set; }
         public Eventhandlers()
         {
             SAR = new SendAndReceive(this);
@@ -47,14 +46,14 @@ namespace FabHUELess2
             SatVal = sat;
             HueVal = hue;
         }
-        public void setOnAndOfHandler()
+        public void setOnAndOfHandler(double id, Boolean on)
         {
             on = !on;
-            SAR.setOnAndOf(on, 1);
+            SAR.setOnAndOf(on, (int)id);
         }
-        public void SetLampHandler()
+        public void SetLampHandler(double id)
         {
-            SAR.setLamp(HueVal, SatVal, BriVal, 1);
+            SAR.setLamp(HueVal, SatVal, BriVal, (int)id);
         }
         public Color HsvToRgb(double hue, double sat, double val)
         {
