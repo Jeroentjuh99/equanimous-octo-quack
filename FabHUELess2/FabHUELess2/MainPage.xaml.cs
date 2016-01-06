@@ -81,6 +81,7 @@ namespace FabHUELess2
                 }
                 Flyout f = Resources["Login"] as Flyout;
                 f.Hide();
+                LoginButton.IsEnabled = false;
             }
             catch (Exception)
             {

@@ -45,7 +45,7 @@
                     </Grid.RowDefinitions>
                     <!-- Row 0 -->
                     <Button x:Name="ToggleState" Grid.Row="0" Background="Black" Click="ToggleState_Click" HorizontalAlignment="Center" >
-                        <Ellipse Fill="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
+                        <Ellipse Fill="White" Stroke="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
                     </Button>
                     
                     <!-- Row 1 -->
