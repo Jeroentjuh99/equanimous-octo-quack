@@ -59,6 +59,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <!-- Row 0 -->
+                        <TextBlock x:Name="CurrentId" HorizontalAlignment="Center" TextAlignment="Center"/>
 
                         <!-- Row 1 -->
                         <TextBlock Grid.Row="1" Text="Hue"/>

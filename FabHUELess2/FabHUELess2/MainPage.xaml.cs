@@ -149,6 +149,7 @@ namespace FabHUELess2
             {
                 if (l.id == Id)
                 {
+                    CurrentId.Text = l.name;
                     HUE.Value = l.state.hue;
                     BRI.Value = l.state.bri;
                     SAT.Value = l.state.sat;
@@ -165,7 +166,8 @@ namespace FabHUELess2
                     }
                 }
             }
-            
+            Lights.IsPaneOpen = !Lights.IsPaneOpen;
+
 
         }
     }
