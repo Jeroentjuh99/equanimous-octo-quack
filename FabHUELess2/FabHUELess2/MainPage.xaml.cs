@@ -172,5 +172,19 @@ namespace FabHUELess2
 
 
         }
+
+        private void ApplyAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Lamp l in collectionlamp)
+            {
+                EH.SetLampHandler(l.id);
+                l.state.hue = HUE.Value;
+                l.state.bri = BRI.Value;
+                l.state.sat = SAT.Value;
+            }
+        }
+
+        
+        
     }
 }

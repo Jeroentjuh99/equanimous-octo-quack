@@ -16,7 +16,7 @@
         <DataTemplate x:Key="Template" x:DataType="data:Lamp">
             <TextBlock x:Name="Name" HorizontalAlignment="Center" Text="{x:Bind name}"/>
         </DataTemplate>
-        
+
         <Flyout x:Key="Login">
             <Grid>
                 <Grid.RowDefinitions>
@@ -47,7 +47,7 @@
                     <Button x:Name="ToggleState" Grid.Row="0" Background="Black" Click="ToggleState_Click" HorizontalAlignment="Center" >
                         <Ellipse Fill="White" Stroke="White" Height="100" Width="{ Binding Height, RelativeSource={RelativeSource Self}}" x:Name="Elipse"/>
                     </Button>
-                    
+
                     <!-- Row 1 -->
                     <Grid Grid.Row="1" Height="320" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
@@ -75,6 +75,7 @@
 
                         <!-- Row 4 -->
                         <Button Grid.Row="4" x:Name="Button" Content="Apply" Click="Apply_Click"/>
+                        <Button Grid.Row="4" x:Name="Button1" Content="Apply to all lamps" Click="ApplyAll_Click" Margin="63,9.667,0,11.667"/>
                     </Grid>
                 </Grid>
             </SplitView.Content>
