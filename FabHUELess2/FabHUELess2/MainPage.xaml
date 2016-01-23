@@ -25,7 +25,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="1" Name="loginBox" Text="IP:Port" Width="200" />
+                <TextBox Grid.Row="1" Name="loginBox" Text="145.48.205.190:80" Width="200" />
                 <Button Grid.Row="2" Name="Accept" Content="Accept" Click="Accept_Click"/>
             </Grid>
         </Flyout>
